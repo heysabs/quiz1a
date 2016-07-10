@@ -2,8 +2,8 @@ function init() {
 
   var player1Score = 0;
   var player2Score = 0;
-  var player1Turn = true;
-  var currQnNo = -1;
+  var playerTurn = 1;
+  var currentQnNo = 1;
 
   // using the new keyword and the constructor we can create array of questions for the quiz
   var questions = [{
@@ -50,28 +50,59 @@ function init() {
 
   var random = 0;
 
-  function currentQuestion() {
+  function askQuestion() {
     random = Math.floor(Math.random() * questions.length);
     var currentQn = questions[random].question;
     $("#qnText").text(currentQn);
   }
 
-  currentQuestion();
+  askQuestion();
+
+  function currentPlayerTurn() {
+    if(currentQnNo % 2 === 1) {
+      playerTurn = 1;
+      $(".playerTurnNow").text("It's Player " + playerTurn + "'s turn!");
+    } else {
+      playerTurn = 2;
+      $(".playerTurnNow").text("It's Player " + playerTurn + "'s turn!");
+    }
+  }
 
   $('.true').click(function() {
     if(questions[random].answer === 'true') {
-      console.log("correct");
+      if( playerTurn === 1 ){
+        player1Score++;
+        console.log("player 1 score is now " + player1Score);
+        $(".player1-score").text("Score: " + player1Score);
+      } else {
+        player2Score++;
+        $(".player2-score").text("Score: " + player2Score);
+      }
     } else {
       console.log("wrong");
     }
+    currentQnNo++;
+    currentPlayerTurn();
+    askQuestion();
   });
 
   $('.false').click(function() {
-    if(questions[random].answer ==='true') {
-      console.log("wrong");
-    } else {
+    if(questions[random].answer === 'false') {
       console.log("correct");
+      if( playerTurn === 1 ){
+        player1Score++;
+        console.log("player 1 score is now " + player1Score);
+        $(".player1-score").text("Score: " + player1Score);
+      } else {
+        player2Score++;
+        $(".player2-score").text("Score: " + player2Score);
+      }
+    } else {
+      console.log("wrong");
     }
+    currentQnNo++;
+    currentPlayerTurn();
+    askQuestion();
   });
 
 
