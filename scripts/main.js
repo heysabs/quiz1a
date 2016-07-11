@@ -82,27 +82,32 @@ function init() {
       } else if (player2Score > player1Score) {
         alert("Player 2 wins! Play again?");
         location.reload();
-      } else alert("It's a draw! Play again?");
+      } else {
+        alert("It's a draw! Play again?");
       location.reload();
+    }
     }
   }
 
-  $('.true').click(function() {
-    if(questions[random].answer === 'true') {
+  function assignScore(index, answer) {
+    if (questions[index].answer === answer) {
       if( playerTurn === 1 ){
         player1Score++;
         $(".player1-score").text("Player 1 Score: " + player1Score);
-        // alert("Yes! Player " + playerTurn + " gets a point!");
         swal({title: ':D', text: 'Yes! You get a point :)', type: 'success', confirmButtonText: 'Next'});
       } else {
         player2Score++;
         $(".player2-score").text("Player 2 Score: " + player2Score);
-        // alert("Yes! Player " + playerTurn + " gets a point!");
         swal({title: ':D', text: 'Yes! You get a point :)', type: 'success', confirmButtonText: 'Next'});
-      }
-    } else {
-      swal({title: ':(', text: 'You got it wrong!', type: 'error', confirmButtonText: 'Next'});
     }
+  } else {
+    swal({title: ':(', text: 'You got it wrong!', type: 'error', confirmButtonText: 'Next'});
+  }
+}
+
+
+  $('.true').click(function() {
+    assignScore(random, 'true');
     questions.splice(random,1);
     checkWinner();
     currentQnNo++;
@@ -111,28 +116,13 @@ function init() {
   });
 
   $('.false').click(function() {
-    if(questions[random].answer === 'false') {
-      if( playerTurn === 1 ){
-        player1Score++;
-        $(".player1-score").text("Player 1 Score: " + player1Score);
-        // alert("Yes! Player " + playerTurn + " gets a point!");
-        swal({title: ':D', text: 'Yes! You get a point!', type: 'success', confirmButtonText: 'Next'});
-      } else {
-        player2Score++;
-        $(".player2-score").text("Player 2 Score: " + player2Score);
-        // alert("Yes! Player " + playerTurn + " gets a point!");
-        swal({title: ':D', text: 'Yes! You get a point! :)', type: 'success', confirmButtonText: 'Next'});
-      }
-    } else {
-      swal({title: ':(', text: 'You got it wrong!', type: 'error', confirmButtonText: 'Next'});
-    }
+    assignScore(random, 'false');
     questions.splice(random,1);
     checkWinner();
     currentQnNo++;
     currentPlayerTurn();
     askQuestion();
   });
-
 
 
       }

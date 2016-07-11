@@ -37,3 +37,8 @@ color: #ffeb3b;
   padding: 1em;
   border-radius: 1.5%;
 }
+
+button {
+  width: 200px;
+  color: white;
+}
