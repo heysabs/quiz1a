@@ -7,43 +7,43 @@ function init() {
 
   // using the new keyword and the constructor we can create array of questions for the quiz
   var questions = [{
-    question: 'the question 1',
+    question: 'Humans share 50% of their DNA with bananas.',
     choices: ['true', 'false'],
     answer: 'true'
   }, {
-    question: 'the question 2',
+    question: 'Astronauts shrink while they\'re in space.',
     choices: ['true', 'false'],
     answer: 'false'
   }, {
-    question: 'the question 3',
+    question: 'Earth is closest to the sun in January.',
     choices: ['true', 'false'],
     answer: 'true'
   }, {
-    question: 'the question 4',
+    question: 'Narwhals use their tusks to communicate with each other.',
     choices: ['true', 'false'],
     answer: 'false'
   }, {
-    question: 'the question 5',
+    question: 'Male platypuses produce venom.',
     choices: ['true', 'false'],
     answer: 'true'
   }, {
-    question: 'the question 6',
+    question: 'An octopus has two hearts.',
     choices: ['true', 'false'],
     answer: 'false'
   }, {
-    question: 'the question 7',
+    question: 'Baby echidnas are called puggles.',
     choices: ['true', 'false'],
     answer: 'true'
   }, {
-    question: 'the question 8',
+    question: 'Whales can get sunburned.',
     choices: ['true', 'false'],
     answer: 'true'
   }, {
-    question: 'the question 9',
+    question: 'Different coloured Froot Loops have different flavours.',
     choices: ['true', 'false'],
     answer: 'false'
   }, {
-    question: 'the question 10',
+    question: 'A group of otters is called a romp.',
     choices: ['true', 'false'],
     answer: 'true'
   }];
@@ -54,6 +54,7 @@ function init() {
     random = Math.floor(Math.random() * questions.length);
     var currentQn = questions[random].question;
     $("#qnText").text(currentQn);
+    $("#qnNumber").text("Question " + currentQnNo);
   }
 
   askQuestion();
@@ -61,10 +62,23 @@ function init() {
   function currentPlayerTurn() {
     if(currentQnNo % 2 === 1) {
       playerTurn = 1;
-      $(".playerTurnNow").text("It's Player " + playerTurn + "'s turn!");
+      $(".playerTurnNow").text("It's Player " + playerTurn + "'s turn.");
     } else {
       playerTurn = 2;
-      $(".playerTurnNow").text("It's Player " + playerTurn + "'s turn!");
+      $(".playerTurnNow").text("It's Player " + playerTurn + "'s turn.");
+    }
+  }
+
+  function checkWinner() {
+    if(questions.length === 0) {
+      if(player1Score > player2Score) {
+        alert("Player 1 wins! Play again?");
+        location.reload();
+      } else if (player2Score > player1Score) {
+        alert("Player 2 wins! Play again?");
+        location.reload();
+      } else alert("It's a draw!");
+      location.reload();
     }
   }
 
@@ -72,7 +86,6 @@ function init() {
     if(questions[random].answer === 'true') {
       if( playerTurn === 1 ){
         player1Score++;
-        console.log("player 1 score is now " + player1Score);
         $(".player1-score").text("Score: " + player1Score);
       } else {
         player2Score++;
@@ -81,14 +94,16 @@ function init() {
     } else {
       console.log("wrong");
     }
+    questions.splice(random,1);
+    checkWinner();
     currentQnNo++;
+    // console.log(questions.length);
     currentPlayerTurn();
     askQuestion();
   });
 
   $('.false').click(function() {
     if(questions[random].answer === 'false') {
-      console.log("correct");
       if( playerTurn === 1 ){
         player1Score++;
         console.log("player 1 score is now " + player1Score);
@@ -100,9 +115,11 @@ function init() {
     } else {
       console.log("wrong");
     }
+    questions.splice(random,1);
     currentQnNo++;
     currentPlayerTurn();
     askQuestion();
+    checkWinner();
   });
 
 

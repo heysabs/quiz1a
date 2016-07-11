@@ -1,0 +1,15 @@
+body {
+  text-align: center;
+}
+
+.clearfix {
+    overflow: auto;
+  }
+
+#player1 {
+  float:left;
+}
+
+#player2 {
+  float:right;
+}
