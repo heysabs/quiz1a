@@ -92,15 +92,16 @@ function init() {
       if( playerTurn === 1 ){
         player1Score++;
         $(".player1-score").text("Player 1 Score: " + player1Score);
-        alert("Yes! Player " + playerTurn + " gets a point!");
-        console.log("checkcheck");
+        // alert("Yes! Player " + playerTurn + " gets a point!");
+        swal({title: ':D', text: 'Yes! You get a point :)', type: 'success', confirmButtonText: 'Next'});
       } else {
         player2Score++;
         $(".player2-score").text("Player 2 Score: " + player2Score);
-        alert("Yes! Player " + playerTurn + " gets a point!");
+        // alert("Yes! Player " + playerTurn + " gets a point!");
+        swal({title: ':D', text: 'Yes! You get a point :)', type: 'success', confirmButtonText: 'Next'});
       }
     } else {
-      alert("No!");
+      swal({title: ':(', text: 'You got it wrong!', type: 'error', confirmButtonText: 'Next'});
     }
     questions.splice(random,1);
     checkWinner();
@@ -114,14 +115,16 @@ function init() {
       if( playerTurn === 1 ){
         player1Score++;
         $(".player1-score").text("Player 1 Score: " + player1Score);
-        alert("Yes! Player " + playerTurn + " gets a point!");
+        // alert("Yes! Player " + playerTurn + " gets a point!");
+        swal({title: ':D', text: 'Yes! You get a point!', type: 'success', confirmButtonText: 'Next'});
       } else {
         player2Score++;
         $(".player2-score").text("Player 2 Score: " + player2Score);
-        alert("Yes! Player " + playerTurn + " gets a point!");
+        // alert("Yes! Player " + playerTurn + " gets a point!");
+        swal({title: ':D', text: 'Yes! You get a point! :)', type: 'success', confirmButtonText: 'Next'});
       }
     } else {
-      alert("No!");
+      swal({title: ':(', text: 'You got it wrong!', type: 'error', confirmButtonText: 'Next'});
     }
     questions.splice(random,1);
     checkWinner();
@@ -131,68 +134,6 @@ function init() {
   });
 
 
-  //
-  // function numberOfQuestions() {
-  //   var totalQuestions = questions.length;
-  //   return totalQuestions;
-  // }
-  //
-  // function correctAnswer() {
-  //   var answer = questions[random].answer;
-  //   return answer;
-  // }
-  //
-  // function playerTurn(choice) {
-  //   if (currQnNo > -1) {
-  //     if (choice == correctAnswer()) {
-  //       if (player1Turn) {
-  //         player1Score++;
-  //       } else {
-  //         player2Score++;
-  //       }
-  //       }
-  //     }
-  //   }
-  //
-  //
-  //
-  //
-  //
-  // }
-  //
-  //
-  // // playTurn: function(choice) {
-  // //   if(this.currQnNo > -1){
-  // //     if (choice == this.correctAnswer()) {
-  // //       if (this.player1Turn) {
-  // //         this.player1Score++;
-  // //       } else {
-  // //         this.player2Score++;
-  // //       }
-  // //       this.statusUpdate();
-  // //       return true;
-  // //     } else {
-  // //       this.statusUpdate();
-  // //       return false;
-  // //     }
-  // //   }else{
-  // //     return true;
-  // //   }
-  //
-  //
-  //     // assign 'true' / 'false' to buttons
-  //     // if chosen answer is true
-  //
-  //
-  //
-  //
-  //     $(document).ready(function() {
-  //         var textQuestion = $("#qnText").text(currentQuestion);
-  //
-  //         // });
-  //
-  //
-  //       }
-  //       window.addEventListener('load', init, false);
+
       }
       init();
