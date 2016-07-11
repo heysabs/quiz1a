@@ -1,5 +1,10 @@
 function init() {
 
+  var player1Name = prompt("What's Player 1's name?");
+  var player2Name = prompt("What's Player 2's name?");
+  $(".player1").text(player1Name);
+  $(".player2").text(player2Name);
+
   var player1Score = 0;
   var player2Score = 0;
   var playerTurn = 1;
@@ -77,7 +82,7 @@ function init() {
       } else if (player2Score > player1Score) {
         alert("Player 2 wins! Play again?");
         location.reload();
-      } else alert("It's a draw!");
+      } else alert("It's a draw! Play again?");
       location.reload();
     }
   }
@@ -86,18 +91,20 @@ function init() {
     if(questions[random].answer === 'true') {
       if( playerTurn === 1 ){
         player1Score++;
-        $(".player1-score").text("Score: " + player1Score);
+        $(".player1-score").text("Player 1 Score: " + player1Score);
+        alert("Yes! Player " + playerTurn + " gets a point!");
+        console.log("checkcheck");
       } else {
         player2Score++;
-        $(".player2-score").text("Score: " + player2Score);
+        $(".player2-score").text("Player 2 Score: " + player2Score);
+        alert("Yes! Player " + playerTurn + " gets a point!");
       }
     } else {
-      console.log("wrong");
+      alert("No!");
     }
     questions.splice(random,1);
     checkWinner();
     currentQnNo++;
-    // console.log(questions.length);
     currentPlayerTurn();
     askQuestion();
   });
@@ -106,22 +113,22 @@ function init() {
     if(questions[random].answer === 'false') {
       if( playerTurn === 1 ){
         player1Score++;
-        console.log("player 1 score is now " + player1Score);
-        $(".player1-score").text("Score: " + player1Score);
+        $(".player1-score").text("Player 1 Score: " + player1Score);
+        alert("Yes! Player " + playerTurn + " gets a point!");
       } else {
         player2Score++;
-        $(".player2-score").text("Score: " + player2Score);
+        $(".player2-score").text("Player 2 Score: " + player2Score);
+        alert("Yes! Player " + playerTurn + " gets a point!");
       }
     } else {
-      console.log("wrong");
+      alert("No!");
     }
     questions.splice(random,1);
+    checkWinner();
     currentQnNo++;
     currentPlayerTurn();
     askQuestion();
-    checkWinner();
   });
-
 
 
   //

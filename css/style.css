@@ -1,5 +1,15 @@
 body {
   text-align: center;
+  background-color: #03a9f4;
+}
+
+header {
+  padding: 30px;
+}
+
+h2, h4 {
+font-family: 'Lato', sans-serif;
+color: #ffeb3b;
 }
 
 .clearfix {
@@ -12,4 +22,18 @@ body {
 
 #player2 {
   float:right;
+}
+
+#qnNumber {
+  text-align: left;
+}
+
+.player2-score, .player1-score {
+  margin-top: -1em;
+}
+
+.questionArea {
+  background-color: #2196f3;
+  padding: 1em;
+  border-radius: 1.5%;
 }
